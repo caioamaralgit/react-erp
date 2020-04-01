@@ -1,5 +1,5 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/User');
-const bcryptPassword = require('../utils/bcryptPassword');
 
 module.exports = {
     async index(request, response) {
@@ -9,15 +9,14 @@ module.exports = {
 
     async store(request, response) {
         const { username, email, phone } = request.body;
-        const { salt, hashedPassword: password } = bcryptPassword.encrypt(request.body.password);
+        const password = bcrypt.hashSync(request.body.password, bcrypt.genSaltSync(10));
 
         const user = await User.findOneAndUpdate({ username }, {
             $set: {
                 username,
                 email,
                 phone,
-                password,
-                salt
+                password
             }
         }, { new: true, upsert: true });
 

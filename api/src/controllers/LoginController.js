@@ -1,5 +1,5 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/User');
-const bcryptPassword = require('../utils/bcryptPassword');
 
 module.exports = {
     async auth(request, response) {
@@ -13,7 +13,7 @@ module.exports = {
             });
         }
 
-        const validPassword = bcryptPassword.decrypt(password, user.password, user.salt);
+        const validPassword = bcrypt.compareSync(password, user.password);
 
         if (!validPassword) {
             return response.status(401).json({
