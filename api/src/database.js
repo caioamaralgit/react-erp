@@ -13,6 +13,8 @@ module.exports = {
         }
 
         return mongoose.connect(`mongodb://${dbuser}:${dbpass}@ds021671.mlab.com:21671/react-erp`, {
+            useCreateIndex: true,
+            useFindAndModify: false,
             useNewUrlParser: true,
             useUnifiedTopology: true
         }).then(() => {
