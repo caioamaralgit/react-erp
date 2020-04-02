@@ -1,5 +1,6 @@
 const express = require('express');
 const minimist = require('minimist');
+const cors = require('cors');
 
 const auth = require('./auth');
 const database = require('./database');
@@ -25,6 +26,7 @@ const app = express();
 const routes = require('./routes');
 
 app.use(express.json());
+app.use(cors());
 app.use(auth.jwt(secret));
 app.use(auth.error);
 app.use(routes);
