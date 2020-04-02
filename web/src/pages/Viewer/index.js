@@ -9,16 +9,7 @@ import './styles.scss';
 export default function Viewer({ content }) {
     const views = ['clients', 'users'];
 
-    let contentComponent = null;
-
-    switch (content) {
-        case "clients":
-            contentComponent = <Clients />;
-            break;
-        case "users":
-            contentComponent = <Users />;
-            break;
-    }
+    const contentComponent = (content === 'clients' ? <Clients /> : <Users />);
 
     return (
         <div className="max-w-screen-lg w-full">
@@ -37,8 +28,9 @@ export default function Viewer({ content }) {
                                 sm:mt-0
                                 sm:w-auto
                                 ${index > 0 ? "sm:ml-5" : ""}
-                                ${view == content ? "active" : ""} 
+                                ${view === content ? "active" : ""} 
                             `}
+                            key={view}
                             to={`/${view}`}
                         >
                             {view}

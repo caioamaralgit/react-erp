@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '../../services/api';
 
 export default function Clients() {
+    const [clients, setClients] = useState([]);
+
+    useEffect(() => {
+        api.get("/client").then((result) => {
+            setClients(result.data);
+        });
+    }, []);
+
     return (
         <div className="overflow-x-auto">
             <table className="my-4 text-center w-full">
@@ -13,30 +22,20 @@ export default function Clients() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="bg-gray-300">
-                        <td>Caio Augusto Barreto do Amaral</td>
-                        <td>123.123.123-10</td>
-                        <td>Rua José Miguel, 123</td>
-                        <td>(13) 12312-1231</td>
-                    </tr>
-                    <tr className="bg-gray-400">
-                        <td>Caio Augusto Barreto do Amaral</td>
-                        <td>123.123.123-10</td>
-                        <td>Rua José Miguel, 123</td>
-                        <td>(13) 12312-1231</td>
-                    </tr>
-                    <tr className="bg-gray-300">
-                        <td>Caio Augusto Barreto do Amaral</td>
-                        <td>123.123.123-10</td>
-                        <td>Rua José Miguel, 123</td>
-                        <td>(13) 12312-1231</td>
-                    </tr>
-                    <tr className="bg-gray-400">
-                        <td>Caio Augusto Barreto do Amaral</td>
-                        <td>123.123.123-10</td>
-                        <td>Rua José Miguel, 123</td>
-                        <td>(13) 12312-1231</td>
-                    </tr>
+                    {
+                        clients.map((client, index) => {
+                            const className = index % 2 === 0 ? "bg-gray-300" : "bg-gray-400";
+
+                            return (
+                                <tr key={client._id} className={className}>
+                                    <td>{client.name}</td>
+                                    <td>{client.cpf}</td>
+                                    <td>{client.address}</td>
+                                    <td>{client.phone}</td>
+                                </tr>
+                            );
+                        })
+                    }
                 </tbody>
             </table>
         </div>
