@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
-const minutesToExpire = 1;
+const minutesToExpire = 60;
 
 module.exports = {
     async auth(request, response) {
