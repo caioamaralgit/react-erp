@@ -30,7 +30,7 @@ input, .button, textarea {
     border-radius: 8px;
     color: #DFDFDF;
     display: inline-block;
-    padding: 15px 40px;
+    padding: 10px 30px;
     transition: filter color 0.2s;
 }
 
@@ -58,6 +58,9 @@ input, .button, textarea {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 100vh;
     padding: 30px;
+
+    @media (min-width: 640px) {
+        height: 100vh;
+    }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Clients() {
     return (
-        <div>
+        <div className="overflow-x-auto">
             <table className="my-4 text-center w-full">
                 <thead className="bg-gray-800 text-white">
                     <tr>
