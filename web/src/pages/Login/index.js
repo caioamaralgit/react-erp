@@ -17,7 +17,12 @@ export default function Login() {
             username,
             password
         }).then(({ data }) => {
-            sessionStorage.setItem("token", data.token);
+            const token = data.token;
+            const now = new Date();
+
+            token.expiresIn += now.getTime();
+
+            sessionStorage.setItem("token", JSON.stringify(token));
             sessionStorage.setItem("user", JSON.stringify(data.user));
 
             history.push('/clients');

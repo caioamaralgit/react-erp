@@ -6,9 +6,11 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(async config => {
-    const token = sessionStorage.getItem('token');
+    if (!sessionStorage.getItem('token')) return config;
 
-    if (token) config.headers.Authorization = `Bearer ${token}`;
+    const token = JSON.parse(sessionStorage.getItem('token'));
+
+    if (token) config.headers.Authorization = `Bearer ${token.value}`;
 
     return config;
 });

@@ -31,7 +31,10 @@ module.exports = {
         );
 
         return response.json({
-            token,
+            token: {
+                expiresIn: (minutesToExpire * 60 * 1000),
+                value: token
+            },
             user: {
                 _id: user._id,
                 username: user.username

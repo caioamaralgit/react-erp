@@ -11,7 +11,19 @@ export const history = createBrowserHistory();
 
 export default function Routes() {
     function isAuthenticated() {
-        return sessionStorage.getItem('token') !== null;
+        if (!sessionStorage.getItem("token")) return false;
+
+        const now = new Date();
+        const token = JSON.parse(sessionStorage.getItem("token"));
+
+        if (now.getTime() > token.expiresIn) {
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("user");
+
+            return false;
+        }
+
+        return true;
     }
 
     function PrivateRoute({ path, component }) {
