@@ -18,19 +18,20 @@ process.env['JWT_SECRET'] = secret;
 
 console.log("Initializing database connection");
 
-database.connect(dbuser, dbpass);
+database.connect(dbuser, dbpass).then(() => {
+    console.log("Connection with database established");
+    console.log("Starting server");
 
-console.log("Starting server");
+    const app = express();
+    const routes = require('./routes');
 
-const app = express();
-const routes = require('./routes');
+    app.use(express.json());
+    app.use(cors({ origin: 'https://react-erp.netlify.com' }));
+    app.use(auth.jwt(secret));
+    app.use(auth.error);
+    app.use(routes);
 
-app.use(express.json());
-app.use(cors());
-app.use(auth.jwt(secret));
-app.use(auth.error);
-app.use(routes);
+    console.log(`Listening port ${port}...\n`);
 
-console.log(`Listening port ${port}...\n`);
-
-app.listen(port);
+    app.listen(port);
+});

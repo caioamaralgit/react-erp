@@ -6,6 +6,7 @@
   "author": "Caio Amaral",
   "license": "MIT",
   "scripts": {
+    "start": "node src/index --dbuser=$DBUSER --dbpass=$DBPASS --port=$PORT",
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
