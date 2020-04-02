@@ -12,11 +12,11 @@ export default function Routes() {
             <Switch>
                 <Route path="/" exact component={Login} />
 
-                <Route path="/users" render={() => <Viewer content="users" />} />
                 <Route path="/users/new" component={NewUser} />
+                <Route path="/users" render={() => <Viewer content="users" />} />
 
-                <Route path="/clients" render={() => <Viewer content="clients" />} />
                 <Route path="/clients/new" component={NewClient} />
+                <Route path="/clients" render={() => <Viewer content="clients" />} />
             </Switch>
         </BrowserRouter>
     );
