@@ -1,0 +1,31 @@
+.container {
+    background-color: #FFFFFF;
+    box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.65);
+    border-radius: 8px;
+    display: inline-flex;
+    flex-direction: column;
+    max-height: 650px;
+    max-width: 1100px;
+    padding: 20px 40px;
+    width: 100%;
+
+    h1 {
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+    }
+
+    form {
+        font-size: 18px;
+
+        label {
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        div {
+            margin: 30px 0;
+        }
+    }
+}
