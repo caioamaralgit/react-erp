@@ -4,7 +4,7 @@ import './styles.scss';
 
 export default function Login() {
     return (
-        <div class="container">
+        <div class="container max-w-screen-lg">
             <h1>Login</h1>
             <form>
                 <div className="block sm:flex items-center">
@@ -16,7 +16,7 @@ export default function Login() {
                     <input id="password" type="password" className="mt-3 sm:mt-0" />
                 </div>
                 <div className="text-center">
-                    <button type="submit">Access</button>
+                    <button className="bg-indigo-500 button" type="submit">Access</button>
                 </div>
             </form>
         </div>

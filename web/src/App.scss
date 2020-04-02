@@ -22,21 +22,36 @@ form input {
     width: 100%;
 }
 
-input, button, textarea {
+input, .button, textarea {
     font: 400 18px Montserrat, sans-serif;
 }
 
-button {
-    background-color: #638CFF;
+.button {
     border-radius: 8px;
     color: #DFDFDF;
+    display: inline-block;
     padding: 15px 40px;
     transition: filter color 0.2s;
 }
 
-button:hover {
+.button.active {
+    background-color: #3c366b;
+}
+
+.button:not(.active):hover {
     color: #FFFFFF;
     filter: brightness(90%);
+}
+
+.container {
+    background-color: #FFFFFF;
+    box-shadow: 6px 6px 10px 1px rgba(0,0,0,0.65);
+    border-radius: 8px;
+    display: inline-flex;
+    flex-direction: column;
+    max-height: 650px;
+    padding: 20px 40px;
+    width: 100%;
 }
 
 #root {
