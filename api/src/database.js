@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = {
-    connect: (dbuser, dbpass) => {
+    connect: async function (dbuser, dbpass) {
         if (!dbuser) {
             console.error("ERROR:", "dbuser required parameter not found");
             return;
@@ -12,19 +12,11 @@ module.exports = {
             return;
         }
 
-        return mongoose.connect(`mongodb://${dbuser}:${dbpass}@ds021671.mlab.com:21671/react-erp`, {
+        return await mongoose.connect(`mongodb://${dbuser}:${dbpass}@ds021671.mlab.com:21671/react-erp`, {
             useCreateIndex: true,
             useFindAndModify: false,
             useNewUrlParser: true,
             useUnifiedTopology: true
-        }).then(() => {
-            console.log("Mongoose:", "Connection established.");
-        }).catch((error) => {
-            console.error("Mongoose:", "Could not connect!");
-            console.error("Error:", error.message);
-
-            // Kill API process
-            process.exit(1);
         });
     }
 }
