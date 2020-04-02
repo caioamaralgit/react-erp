@@ -1,9 +1,10 @@
 const express = require('express');
-const jwt = require('express-jwt');
 const minimist = require('minimist');
 
 const auth = require('./auth');
 const database = require('./database');
+
+console.log("Libraries loaded")
 
 const {
     dbuser,
@@ -14,7 +15,11 @@ const {
 
 process.env['JWT_SECRET'] = secret;
 
+console.log("Initializing database connection");
+
 database.connect(dbuser, dbpass);
+
+console.log("Starting server");
 
 const app = express();
 const routes = require('./routes');
@@ -24,6 +29,6 @@ app.use(auth.jwt(secret));
 app.use(auth.error);
 app.use(routes);
 
-console.log(`Listening port ${port}...`);
+console.log(`Listening port ${port}...\n`);
 
 app.listen(port);
